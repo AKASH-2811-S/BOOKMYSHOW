@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Record</title>
+<link rel="stylesheet" href="#" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" href="#" th:href="@{/css/all.css}" />
+<link rel="stylesheet" href="#" th:href="@{/css/index.css}" />
+</head>
+<body>
+	<h1>
+		User <span th:if="${session.user.name}" th:text="${session.user.name}"></span>
+	</h1>
+	<div class="container">
+		<div class="headiing">
+			<h1>
+				Welcome to Our BookMyShow <span th:if="${session.user.email}"
+					th:text="${session.user.email}"></span>
+			</h1>
+			<br /> <a href="/logout">Logout</a>
+
+		</div>
+	</div>
+
+	<div class="container-fluid mt-5">
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Password</th>
+							<th scope="col">All seats</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="customer: ${records}">
+							<th th:text="${customer.bid}"></th>
+							<th th:text="${customer.name}"></th>
+							<th th:text="${customer.email}"></th>
+							<th th:text="${customer.password}"></th>
+							<th><a th:href="@{all-seats/{id}(id=${customer.bid})}">view
+									seats</a></th>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+			</div>
+
+
+		</div>
+
+
+	</div>
+	<!-- <script th:inline="javascript">
+	let str = [[${list1}]];
+	let obj = JSON.parse(str);
+	console.log(obj.seat);
+	document.write(obj);
+	
+	</script> -->
+</body>
+</html>
